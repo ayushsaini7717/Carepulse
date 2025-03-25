@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id        String  @id @default(uuid()) 
+  fullName  String
+  email     String @unique
+  phone     String  @unique
+  createdAt DateTime @default(now())
+  personal  Boolean @default(false)
+
+  Personalinfo personalInfo?
+
+  Appointments Appointments[]
+}
+
+model OTP {
+  id        String   @id @default(uuid())  
+  otp       String
+  email     String  @unique
+  isexpire  Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  
+}
+
+model personalInfo{
+  id String @id @default(uuid())
+  Dob String
+  gender String
+  address String
+  occupation String
+  physician String
+  allergies String
+  medication String
+  family_medical_history String
+  Past_medical_history String
+  consent1 Boolean @default(false)
+  consent2 Boolean @default(false)
+
+
+  userid String @unique
+  user User @relation(fields: [userid],references: [id])
+}
+
+model Appointments{
+  id String @unique @default(uuid())
+  physician String
+  Reason String
+  comments String
+  appointment_date String
+  pending Boolean @default(true)
+  isconfirm Boolean @default(false)
+  patient String
+  
+  userid String 
+  user User @relation(fields: [userid],references: [id])
+}
