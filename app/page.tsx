@@ -47,7 +47,7 @@ If you did not request this verification, please ignore this email or contact ou
 Best regards,
 The CarePulse Team`;
 
-    const [response1,response2]=await Promise.all([fetch("api/sendmail",{
+    await Promise.all([fetch("api/sendmail",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"

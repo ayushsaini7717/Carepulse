@@ -27,6 +27,7 @@ export async function GET(req: Request) {
     const decoded = jwt.verify(token, SECRET_KEY);
     return NextResponse.json({ verified: true, decoded });
   } catch (err) {
+    console.log(err);
     return NextResponse.json({ verified: false, error: "Invalid token" }, { status: 401 });
   }
 }
