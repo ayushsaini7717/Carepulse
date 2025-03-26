@@ -67,7 +67,6 @@ The CarePulse Team`;
       })
     })])
 
-    const [data1,data2]=await Promise.all([response1.json(),response2.json()]);
 
 }
 

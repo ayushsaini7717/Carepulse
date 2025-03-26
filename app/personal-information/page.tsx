@@ -9,8 +9,6 @@ import { saveUserInfo } from "../actions/personalInfoAction";
 import { export_fullName, export_mail, export_phone } from "../page";
 import SubmitButton from "../custom-components/submitBtnInfo";
 import { cookies } from "next/headers";
-import { Hospital } from "lucide-react";
-import css from "styled-jsx/css";
 
 async function verifyToken(token: string) {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"; 

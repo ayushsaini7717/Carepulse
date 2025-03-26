@@ -11,7 +11,7 @@ export async function POST(req:Request){
             }
         })
         if(ispresent){
-            const updateotp=await prisma.oTP.update({
+            await prisma.oTP.update({
                 where: {
                     email: body.email
                 },data:{
@@ -20,7 +20,7 @@ export async function POST(req:Request){
                 }
             })
         }else{
-            const createotp=await prisma.oTP.create({
+            await prisma.oTP.create({
                 data:{
                     otp: body.otp,
                     email: body.email
@@ -50,6 +50,7 @@ export async function GET(req: Request){
             return NextResponse.json({msg: "no data"})
         }
     }catch(err){
+        console.log(err);
         return NextResponse.json({msg: "error"})
     }
     

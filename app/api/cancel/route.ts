@@ -6,7 +6,7 @@ export async function POST(req: Request){
     try{
         const body=await req.json();
     
-        const cancel=await prisma.appointments.update({
+        await prisma.appointments.update({
             where: {
                 id: body.id
             },data: {

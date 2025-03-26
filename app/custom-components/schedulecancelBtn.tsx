@@ -19,7 +19,7 @@ const ScheduleCancelComp: React.FC<schedulecancelProp>=({id,onAction,patient,phy
     async function scheduled(){
         setloading(true);
         try{
-            const res=await fetch("/api/schedule",{
+            await fetch("/api/schedule",{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -37,7 +37,7 @@ const ScheduleCancelComp: React.FC<schedulecancelProp>=({id,onAction,patient,phy
         setloading2(true);
 
         try{
-            const res=await fetch("/api/cancel",{
+            await fetch("/api/cancel",{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -54,7 +54,7 @@ const ScheduleCancelComp: React.FC<schedulecancelProp>=({id,onAction,patient,phy
 
     async function ConfirmEmail(){
         try{
-            const res=await fetch("api/sendmail",{
+            await fetch("api/sendmail",{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -85,7 +85,7 @@ CarePulse`
 
     async function CancelEmail(){
         try{
-            const res=await fetch("api/sendmail",{
+            await fetch("api/sendmail",{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -18,7 +18,7 @@ const AppointmentAction=async (formdata: FormData)=>{
             }
         })
     
-        const appointment_result=await prisma.appointments.create({
+        await prisma.appointments.create({
             data: {
                 physician: physician,
                 Reason: reason,

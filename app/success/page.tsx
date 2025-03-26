@@ -40,7 +40,7 @@ const Successpage =async () => {
     
                     <div className="mb-6">
                         <h4 className="text-[#ABB8C4] font-semibold text-base sm:text-lg md:text-xl">
-                            We'll be in touch shortly to confirm.
+                            We will be in touch shortly to confirm.
                         </h4>
                     </div>
     

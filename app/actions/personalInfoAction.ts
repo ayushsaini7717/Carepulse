@@ -5,9 +5,7 @@ import { redirect } from "next/navigation";
 const prisma=new PrismaClient();
 
 export async function saveUserInfo(formdata: FormData){
-    const name=formdata.get("name") as string;
     const email=formdata.get("email") as string;
-    const phone=formdata.get("phone") as string;
     const dob=formdata.get("dob") as string;
     const gender=formdata.get("gender") as string;
     const physician=formdata.get("physician") as string;
@@ -27,7 +25,7 @@ export async function saveUserInfo(formdata: FormData){
                 email: email
             }
         })
-        const info=await prisma.personalInfo.create({
+        await prisma.personalInfo.create({
             data: {
                 Dob: dob,
                 gender: gender,
@@ -47,7 +45,7 @@ export async function saveUserInfo(formdata: FormData){
                 }
             }
         })
-        const update=await prisma.user.update({
+        await prisma.user.update({
             where: {
                 id: user?.id
             },data: {
