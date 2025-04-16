@@ -8,9 +8,9 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import CloseOTP from "../custom-components/close-otp";
-import VerifyOTP from "../custom-components/verify-otp";
-import { export_mail, export_phone, export_fullName } from "../page";
+import CloseOTP from "../../../custom-components/close-otp";
+import VerifyOTP from "../../../custom-components/verify-otp";
+import { export_fullName,export_mail,export_phone } from "../../../utils/global";
 
 const verification_otp = async () => {
   try {

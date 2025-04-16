@@ -3,13 +3,31 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import Cookies from "js-cookie";
 
 export default function Home() {
     const [email,Setemail]=useState("");
     const [password,Setpassword]=useState("");
     const router=useRouter();
     const [loading,setLoading]=useState(false);
+
+    const token_generator=async (email:string)=>{
+      try{
+        const res=await fetch("/api/admintoken",{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },body: JSON.stringify({
+              email: email
+          })
+        })
+
+        const data=await res.json();
+        Cookies.set("admin-token",data.token);
+      }catch(err){
+        console.log(err);
+      }
+    }
 
     const handler=async ()=>{
         try{
@@ -28,6 +46,7 @@ export default function Home() {
             const data=await res.json();
             if(data.Status === "Success"){
                 sessionStorage.setItem("secure_access", "true");
+                token_generator(email);
                 router.push("/admin");
             }
             setLoading(false);

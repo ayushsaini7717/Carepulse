@@ -1,6 +1,5 @@
 "use server"
 import { PrismaClient } from "@prisma/client";
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 const prisma=new PrismaClient();
 
@@ -21,7 +20,7 @@ export async function POST(req: Request){
                 comments: body.comments,
                 appointment_date: body.appointment_date,
                 patient: body.patient,
-                hospital: body.hospital,
+                hospital_email: body.hospital,
                 user: {
                     connect: {
                         id: user?.id

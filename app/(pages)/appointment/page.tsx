@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { export_mail,export_fullName } from "../page";
+import { export_mail,export_fullName } from "../../utils/global";
 import { useRouter } from "next/navigation";
 
 async function verifyToken(token: string) {

@@ -63,7 +63,7 @@ model Appointments{
   pending Boolean @default(true)
   isconfirm Boolean @default(false)
   patient String
-  hospital String
+  hospital_email String
   
   userid String 
   user User @relation(fields: [userid],references: [id])

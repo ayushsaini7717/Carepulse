@@ -1,7 +1,7 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Suspense } from "react";
 
 
 
@@ -20,27 +20,21 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({
   children,
-  modal,
-  modal_admin,
   
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
-  modal_admin: React.ReactNode;
   
 }>) {
-   const queryparams=useSearchParams();
-   const isModal=queryparams.get("modal");
-   const isAdmin=queryparams.get("admin");
+  
   
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Suspense fallback={<div>Loading...</div>}>
         {children}
-        {isModal ? modal : null}
-        {isAdmin ? modal_admin : null}
+        </Suspense>
       </body>
     </html>
   );
