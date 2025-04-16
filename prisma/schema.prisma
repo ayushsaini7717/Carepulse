@@ -33,8 +33,6 @@ model OTP {
   email     String  @unique
   isexpire  Boolean @default(false)
   createdAt DateTime @default(now())
-
-  
 }
 
 model personalInfo{
@@ -65,7 +63,34 @@ model Appointments{
   pending Boolean @default(true)
   isconfirm Boolean @default(false)
   patient String
+  hospital String
   
   userid String 
   user User @relation(fields: [userid],references: [id])
 }
+
+model Hospital{
+  id String @unique @default(uuid())
+  name String
+  email String
+  password String
+  city String
+  state String
+  full_address String
+  contact String
+
+  doctor Doctor[]
+}
+
+model Doctor{
+  id String @unique @default(uuid())
+  name String
+  specialization String
+  qualification String
+  experience String
+
+  userId String
+  user Hospital @relation(fields: [userId],references: [id])
+}
+
+

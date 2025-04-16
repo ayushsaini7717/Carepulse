@@ -10,6 +10,7 @@ const AppointmentAction=async (formdata: FormData)=>{
     const appointment_date=formdata.get("date-of-appointment") as string;
     const mail=formdata.get("email") as string;
     const patient=formdata.get("patient") as string;
+    const hospital=formdata.get("search") as string;
 
     try{
         const user=await prisma.user.findFirst({
@@ -25,6 +26,7 @@ const AppointmentAction=async (formdata: FormData)=>{
                 comments: comments,
                 appointment_date: appointment_date,
                 patient: patient,
+                hospital: hospital,
                 user: {
                     connect: {
                         id: user?.id
