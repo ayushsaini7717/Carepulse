@@ -23,6 +23,7 @@ interface Hospital {
   name: string;
   city: string;
   state: string;
+  email: string
 }
 
 interface DoctorList {
@@ -43,6 +44,7 @@ const Appointment = () => {
   const [comment,setComment]=useState("");
   const [date,setDate]=useState("");
   const [loading,setloading]=useState(false);
+  const [HosEmail,setHosEmail]=useState("");
 
   const router=useRouter();
 
@@ -59,7 +61,7 @@ const Appointment = () => {
         reason: reason,
         comments: comment,
         appointment_date: date,
-        hospital: searchText,
+        hospital_email: HosEmail,
         patient: export_fullName
       })
     })
@@ -167,6 +169,7 @@ const Appointment = () => {
                         onClick={() => {
                           setSearchText(hospital.name);
                           setSelectedHospital(hospital.id); 
+                          setHosEmail(hospital.email);
                         }}
                         className={`cursor-pointer bg-gray-800 text-white px-4 py-2 rounded-md border border-gray-700 flex justify-between items-center hover:bg-gray-700 transition`}
                       >

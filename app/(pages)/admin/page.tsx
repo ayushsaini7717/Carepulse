@@ -143,7 +143,7 @@ const AdminDashboard = () => {
 
             <div className="pt-10 pl-7 flex justify-between">
                 <div>
-                  <h2 className="text-3xl font-bold text-white">Welcome, Admin</h2>
+                  <h2 className="text-3xl font-bold text-white">Welcome, Admin {email}</h2>
                   <h5 className="text-[#ABB8C4] font-medium text-base">Start day with managing new appointments</h5>
                 </div>
                 <div className="pt-4 pl-7 mr-4">

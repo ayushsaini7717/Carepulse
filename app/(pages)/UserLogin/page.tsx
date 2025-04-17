@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import OTPButton from "../../custom-components/otp-button";
 import { useEffect, useState } from "react";
 import { setGlobals } from "../../utils/global";
+import { useRouter } from "next/navigation";
 
 const User_schema = z.object({
   fullName: z.string().min(2, "Full name must have at least 2 characters"),
@@ -18,6 +19,7 @@ export default function Home() {
   const [notEmptyPhone, SetnotEmptyPhone] = useState("");
   const [notEmptyName, SetnotEmptyName] = useState("");
   const [status, Setstatus] = useState(false);
+  const router= useRouter();
 
   useEffect(() => {
     const result = User_schema.safeParse({

@@ -30,6 +30,7 @@ export async function GET() {
         name: true,
         city: true,
         state: true,
+        email: true
       },
     });
     return NextResponse.json(response);
