@@ -8,14 +8,18 @@ import { export_mail,export_fullName } from "../../utils/global";
 import { useRouter } from "next/navigation";
 
 async function verifyToken(token: string) {
-  const baseUrl=process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const res=await fetch(`${baseUrl}/api/token?token=${token}`, {
-    method: "GET",
-    cache: "no-store",
-  });
-
-  if (!res.ok) throw new Error("Failed to verify token");
-  return res.json();
+    try{
+      const baseUrl=process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+      const res=await fetch(`${baseUrl}/api/token?token=${token}`, {
+        method: "GET",
+        cache: "no-store",
+      });
+    
+      if (!res.ok) throw new Error("Failed to verify token");
+      return res.json();
+    }catch(err){
+      console.log(err);
+    }
 }
 
 interface Hospital {
@@ -49,7 +53,8 @@ const Appointment = () => {
   const router=useRouter();
 
   const SaveDetails=async ()=>{
-    setloading(true);
+    try{
+      setloading(true);
     const res=await fetch("/api/appointment",{
       method: "POST",
       headers: {
@@ -71,28 +76,37 @@ const Appointment = () => {
       router.push("/success");
     }
     setloading(false);
+    }catch(err){
+      console.log(err);
+    }
+    
   }
 
   useEffect(() => {
     const fetcher = async () => {
-      const [res1, res2] = await Promise.all([
-        fetch("/api/hospital-list", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }),
-        fetch("/api/doctor-list", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }),
-      ]);
-
-      const [data1, data2] = [await res1.json(), await res2.json()];
-      setHospitalList(data1);
-      setDoctorList(data2);
+      try{
+        const [res1, res2] = await Promise.all([
+          fetch("/api/hospital-list", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }),
+          fetch("/api/doctor-list", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }),
+        ]);
+  
+        const [data1, data2] = [await res1.json(), await res2.json()];
+        setHospitalList(data1);
+        setDoctorList(data2);
+      }catch(err){
+        console.log(err);
+      }
+      
     };
     fetcher();
   }, []);
